@@ -1,0 +1,46 @@
+<html><head>
+  <script>
+  var remaining = 0;
+  var qnum;
+  var remainingQ = 0;
+    function buttonClick(){
+  		var min = document.getElementById('min').value;  		
+        var txt = document.getElementById('txt');
+        qnum= document.getElementById('qnum').value;
+        var seconds = min * 60;
+        remaining = min * 60;
+        
+        window.setInterval( function (){ 
+        remaining --;
+        txt.innerHTML = 'Remaining time: ' + Math.floor( remaining / 60) + ':' + (60 - ((seconds - remaining) % 60));
+        txt2.innerHTML = 'Each question: ' + Math.floor(remaining / (qnum - remainingQ)  / 60) + ':' + Math.floor(remaining / (qnum - remainingQ) % 60); 
+        txt3.innerHTML = 'Solved: ' +remainingQ  + '/' + qnum; 
+        
+        } ,1000);
+
+    }
+    function solvedOne(){
+        remainingQ ++;
+    }
+    </script>
+  </head><body>
+  <input placeholder="minutes" type="text" id="min">
+  <input placeholder="questions" type="text" id="qnum">
+    <button onclick="buttonClick()">
+    Start
+  </button>
+  <button onclick="solvedOne()">
+    Solved Question
+  </button>
+  <div>
+  <p>
+  <span id="txt"></span>
+  </p>
+<p>
+  <span id="txt2"></span>
+  </p>
+  <p>
+  <span id="txt3"></span>
+  </p>
+  </body>
+</html>
