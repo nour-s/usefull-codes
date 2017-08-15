@@ -4,7 +4,7 @@ public class PropertyDiscarderResolver : DefaultContractResolver
 
     public PropertyDiscarderResolver()
     {
-        AddProperty<TenancyDetailModel>(p => p.Property);
+        AddProperty<Empoyee>(p => p.Name);
     }
 
     public static void AddProperty<T>(Expression<Func<T, object>> propertyLambda)
@@ -21,11 +21,7 @@ public class PropertyDiscarderResolver : DefaultContractResolver
         if (typeIsFound && propertiesToIgnore[property.DeclaringType].Contains(property.PropertyName))
         {
             property.ShouldSerialize =
-                    instance =>
-                    {
-                        TenancyDetailModel e = (TenancyDetailModel)instance;
-                        return false;
-                    };
+                    instance => false;
         }
 
         return property;
